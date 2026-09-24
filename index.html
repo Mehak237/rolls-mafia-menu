@@ -2,830 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Rolls Mafia - Digital Menu Card</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Rolls Mafia - Menu Card</title>
   <style>
-    :root {
-      --bg-dark: #0f1013;
-      --bg-card: #181920;
-      --bg-card-hover: #22242d;
-      --gold: #f5b324;
-      --gold-light: #fcd34d;
-      --red: #e63946;
-      --red-dark: #b91c1c;
-      --veg-green: #22c55e;
-      --nonveg-red: #ef4444;
-      --egg-yellow: #f59e0b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-color: rgba(245, 179, 36, 0.2);
-    }
-
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Montserrat', sans-serif;
-      min-height: 100vh;
-      padding-bottom: 80px;
-    }
-
-    /* HEADER BANNER */
-    .header {
-      background: linear-gradient(180deg, #1f1406 0%, #151111 60%, var(--bg-dark) 100%);
-      padding: 24px 16px 16px;
-      text-align: center;
-      position: relative;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .crown-icon {
-      font-size: 28px;
-      line-height: 1;
-      display: inline-block;
-      margin-bottom: 4px;
-      filter: drop-shadow(0 2px 8px rgba(245, 179, 36, 0.6));
-    }
-
-    .brand-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 38px;
-      font-weight: 700;
-      letter-spacing: 2px;
+      background-color: #0b0c10;
       color: #fff;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 0px #000, 0 0 20px rgba(245, 179, 36, 0.4);
-      margin-bottom: 4px;
-    }
-
-    .brand-tagline {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gold);
-      font-style: italic;
-      letter-spacing: 0.5px;
-    }
-
-    .brand-badges {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+      touch-action: manipulation;
     }
 
-    .badge-pill {
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .badge-gold {
-      background: rgba(245, 179, 36, 0.15);
-      color: var(--gold-light);
-      border: 1px solid rgba(245, 179, 36, 0.4);
-    }
-
-    .badge-red {
-      background: rgba(230, 57, 70, 0.15);
-      color: #fca5a5;
-      border: 1px solid rgba(230, 57, 70, 0.4);
-    }
-
-    /* STICKY SEARCH & FILTER CONTROLS */
-    .controls-container {
+    /* FLOATING TOP ACTION BAR */
+    .top-bar {
       position: sticky;
       top: 0;
-      background: rgba(15, 16, 19, 0.95);
-      backdrop-filter: blur(12px);
-      z-index: 100;
-      padding: 12px 16px 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .search-wrapper {
-      position: relative;
-      margin-bottom: 10px;
-    }
-
-    .search-input {
+      left: 0;
+      right: 0;
       width: 100%;
-      background: #20222a;
-      border: 1px solid #333846;
-      border-radius: 12px;
-      padding: 12px 16px 12px 42px;
-      font-size: 14px;
-      color: #fff;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .search-input:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(245, 179, 36, 0.2);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 16px;
-      color: #64748b;
-    }
-
-    /* DIETARY TOGGLES */
-    .diet-filters {
+      background: rgba(11, 12, 16, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 10px 16px;
       display: flex;
-      gap: 6px;
-      margin-bottom: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      border-bottom: 1px solid rgba(245, 179, 36, 0.3);
     }
-    .diet-filters::-webkit-scrollbar { display: none; }
 
-    .diet-btn {
-      flex: 1;
-      min-width: 78px;
-      background: #20222a;
-      border: 1px solid #2d313d;
-      color: #94a3b8;
-      font-size: 11px;
+    .brand {
+      font-size: 15px;
       font-weight: 700;
-      padding: 7px 10px;
-      border-radius: 8px;
-      cursor: pointer;
+      color: #f5b324;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 5px;
-      transition: all 0.2s;
-      white-space: nowrap;
+      gap: 6px;
     }
 
-    .diet-btn.active {
-      background: #342711;
-      border-color: var(--gold);
-      color: var(--gold-light);
-    }
-
-    /* CATEGORY PILLS BAR */
-    .category-nav {
+    .actions {
       display: flex;
       gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
     }
-    .category-nav::-webkit-scrollbar { display: none; }
 
-    .cat-btn {
-      background: #181920;
-      border: 1px solid #282b36;
-      color: #94a3b8;
-      padding: 7px 14px;
+    .btn {
+      background: #20222a;
+      color: #fff;
+      border: 1px solid #3d4150;
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
-      white-space: nowrap;
+      text-decoration: none;
       cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .cat-btn.active {
-      background: var(--gold);
-      color: #111;
-      border-color: var(--gold);
-      font-weight: 700;
-    }
-
-    /* FOOD SECTION */
-    .menu-content {
-      padding: 16px;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .category-group {
-      margin-bottom: 28px;
-      scroll-margin-top: 150px;
-    }
-
-    .category-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      padding-bottom: 6px;
-      border-bottom: 2px solid rgba(245, 179, 36, 0.4);
+      gap: 4px;
     }
 
-    .cat-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: #fff;
+    .btn-call {
+      background: #e63946;
+      border-color: #e63946;
+    }
+
+    /* FULL MENU IMAGE CONTAINER */
+    .menu-wrapper {
+      width: 100%;
+      max-width: 800px;
+      padding: 8px 4px 60px;
       display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-    }
-
-    .cat-subtitle {
-      font-size: 11px;
-      color: var(--gold);
-      font-style: italic;
-      font-weight: 500;
-    }
-
-    /* ITEM CARD */
-    .item-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: transform 0.15s, border-color 0.15s;
-    }
-
-    .item-card:hover {
-      border-color: rgba(245, 179, 36, 0.35);
-      background: var(--bg-card-hover);
-    }
-
-    .item-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-      padding-right: 12px;
-    }
-
-    /* VEG / NON-VEG / EGG ICONS */
-    .food-mark {
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      flex-shrink: 0;
     }
 
-    .mark-veg {
-      border: 1.5px solid var(--veg-green);
-    }
-    .mark-veg::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--veg-green);
-    }
-
-    .mark-nonveg {
-      border: 1.5px solid var(--nonveg-red);
-    }
-    .mark-nonveg::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--nonveg-red);
-    }
-
-    .mark-egg {
-      border: 1.5px solid var(--egg-yellow);
-    }
-    .mark-egg::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--egg-yellow);
-    }
-
-    .item-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: #f1f5f9;
-      line-height: 1.3;
-    }
-
-    /* PRICE BOXES */
-    .prices-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .price-box {
-      text-align: center;
-      background: #111217;
-      border: 1px solid #292d38;
+    .menu-card-img {
+      width: 100%;
+      height: auto;
+      display: block;
       border-radius: 8px;
-      padding: 4px 8px;
-      min-width: 54px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+      user-select: none;
+      -webkit-user-select: none;
     }
 
-    .price-label {
-      font-size: 9px;
-      color: #94a3b8;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .price-value {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gold-light);
-    }
-
-    .single-price {
-      background: #13141a;
-      border: 1px solid rgba(245, 179, 36, 0.3);
-      border-radius: 8px;
-      padding: 6px 12px;
-      text-align: right;
-    }
-    .single-price .price-value {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--gold-light);
-    }
-
-    /* FOOTER BAR */
-    .footer-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(17, 18, 23, 0.96);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(245, 179, 36, 0.25);
-      padding: 10px 16px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      z-index: 999;
-      max-width: 650px;
-      margin: 0 auto;
-    }
-
-    .btn-action {
-      background: linear-gradient(135deg, #e63946 0%, #b91c1c 100%);
-      color: #fff;
-      border: none;
-      border-radius: 25px;
-      padding: 9px 18px;
-      font-size: 13px;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 4px 12px rgba(230, 57, 70, 0.35);
-    }
-
-    .btn-secondary {
-      background: #252833;
-      color: #f8fafc;
-      border: 1px solid #3b4052;
-      border-radius: 25px;
-      padding: 9px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .no-results {
+    .hint-text {
       text-align: center;
-      padding: 40px 16px;
+      font-size: 12px;
       color: #94a3b8;
-    }
-
-    @media (max-width: 360px) {
-      .brand-title { font-size: 30px; }
-      .price-box { min-width: 48px; padding: 3px 6px; }
-      .price-value { font-size: 13px; }
+      padding: 8px;
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="crown-icon">👑</div>
-    <h1 class="brand-title">ROLLS MAFIA</h1>
-    <p class="brand-tagline">Swaad Aisa... Yaad Rahega Hamesha !</p>
-    <div class="brand-badges">
-      <span class="badge-pill badge-gold">✨ Pure Taste</span>
-      <span class="badge-pill badge-red">🔥 Roll • Eat • Repeat</span>
-      <span class="badge-pill badge-gold">⭐ 100% Fresh</span>
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="brand">
+      <span>👑</span> ROLLS MAFIA MENU
+    </div>
+    <div class="actions">
+      <a href="menu.jpg" download="Rolls_Mafia_Menu.jpg" class="btn">
+        ⬇️ Save
+      </a>
+      <a href="tel:+919876543210" class="btn btn-call">
+        📞 Call
+      </a>
     </div>
   </header>
 
-  <!-- CONTROLS: SEARCH & FILTER -->
-  <div class="controls-container">
-    <div class="search-wrapper">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search rolls, burger, momos, mojito...">
-    </div>
-
-    <div class="diet-filters">
-      <button class="diet-btn active" data-diet="all">🍽️ All Items</button>
-      <button class="diet-btn" data-diet="veg">🟢 Veg Only</button>
-      <button class="diet-btn" data-diet="non-veg">🔴 Non-Veg</button>
-      <button class="diet-btn" data-diet="egg">🟡 Egg</button>
-    </div>
-
-    <div class="category-nav" id="categoryNav">
-      <!-- Populated dynamically via JS -->
-    </div>
+  <div class="hint-text">
+    💡 Double tap ya pinch karke zoom karein
   </div>
 
-  <!-- MENU LIST -->
-  <main class="menu-content" id="menuContainer">
-    <!-- Populated dynamically -->
+  <!-- EXACT MENU CARD IMAGE -->
+  <main class="menu-wrapper">
+    <img src="menu.jpg" alt="Rolls Mafia Menu Card" class="menu-card-img" id="menuImg" />
   </main>
 
-  <!-- BOTTOM BAR -->
-  <div class="footer-bar">
-    <a href="tel:+919876543210" class="btn-action">
-      📞 Call to Order
-    </a>
-    <button class="btn-secondary" onclick="shareMenu()">
-      🔗 Share Menu
-    </button>
-  </div>
-
-  <script>
-    const menuData = {
-      categories: [
-        {
-          id: "veg-rolls",
-          name: "Veg. Roll",
-          type: "veg",
-          icon: "🌯",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Mix Veg. Roll", type: "veg", single: 70, double: 100 },
-            { name: "Masala Aloo Roll", type: "veg", single: 60, double: 90 },
-            { name: "Aloo Tikki Roll", type: "veg", single: 80, double: 110 },
-            { name: "Cheese Aloo Roll", type: "veg", single: 80, double: 110 },
-            { name: "Veg. Tikki Roll", type: "veg", single: 80, double: 110 },
-            { name: "Cheese Sweet Corn Roll", type: "veg", single: 110, double: 150 }
-          ]
-        },
-        {
-          id: "paneer-rolls",
-          name: "Paneer Roll",
-          type: "veg",
-          icon: "🧀",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Paneer Roll", type: "veg", single: 100, double: 140 },
-            { name: "Peri Peri Paneer", type: "veg", single: 110, double: 150 },
-            { name: "Malai Paneer", type: "veg", single: 120, double: 160 },
-            { name: "Tandoori Paneer", type: "veg", single: 130, double: 170 },
-            { name: "Chilli Paneer", type: "veg", single: 130, double: 170 },
-            { name: "Achari Paneer", type: "veg", single: 130, double: 170 },
-            { name: "Haryali Paneer", type: "veg", single: 140, double: 180 },
-            { name: "Paneer Tikka", type: "veg", single: 140, double: 180 },
-            { name: "Paneer Sweet Corn", type: "veg", single: 150, double: 190 }
-          ]
-        },
-        {
-          id: "special-rolls",
-          name: "Special Rolls",
-          subtitle: "Chaap Lovers Here !",
-          type: "veg",
-          icon: "👑",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Soya Chaap Roll", type: "veg", single: 100, double: 140 },
-            { name: "Malai Chaap Roll", type: "veg", single: 120, double: 160 },
-            { name: "Tandoori Chaap Roll", type: "veg", single: 130, double: 170 },
-            { name: "Achari Chaap Roll", type: "veg", single: 120, double: 160 },
-            { name: "Chilli Chaap Roll", type: "veg", single: 120, double: 160 },
-            { name: "Peri Peri Chaap Roll", type: "veg", single: 140, double: 180 },
-            { name: "Afghani Chaap Roll", type: "veg", single: 150, double: 190 }
-          ]
-        },
-        {
-          id: "mushroom-rolls",
-          name: "Mushroom Roll",
-          type: "veg",
-          icon: "🍄",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Mushroom Roll", type: "veg", single: 110, double: 150 },
-            { name: "Malai Mushroom", type: "veg", single: 120, double: 160 },
-            { name: "Achari Mushroom", type: "veg", single: 140, double: 180 }
-          ]
-        },
-        {
-          id: "sandwiches",
-          name: "Grilled Sandwich",
-          subtitle: "Grilled to Perfection",
-          type: "veg",
-          icon: "🥪",
-          items: [
-            { name: "Veg. Sandwich", type: "veg", price: 100 },
-            { name: "Paneer Sandwich", type: "veg", price: 120 },
-            { name: "Corn Sandwich", type: "veg", price: 120 },
-            { name: "Paneer + Corn Sandwich", type: "veg", price: 140 },
-            { name: "Tandoori Paneer Sandwich", type: "veg", price: 140 },
-            { name: "Cheese Paneer Sandwich", type: "veg", price: 140 }
-          ]
-        },
-        {
-          id: "non-veg-rolls",
-          name: "Non Veg. Roll",
-          type: "non-veg",
-          icon: "🍗",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Chicken Roll", type: "non-veg", single: 110, double: 140 },
-            { name: "Malai Chicken Roll", type: "non-veg", single: 120, double: 160 },
-            { name: "Hariyali Chicken Roll", type: "non-veg", single: 130, double: 170 },
-            { name: "Chicken Tikka Roll", type: "non-veg", single: 130, double: 170 },
-            { name: "Lemon Chicken Roll", type: "non-veg", single: 130, double: 170 },
-            { name: "Tandoori Chicken Roll", type: "non-veg", single: 140, double: 180 }
-          ]
-        },
-        {
-          id: "burgers",
-          name: "Burger",
-          subtitle: "Bite Into Happiness",
-          type: "veg",
-          icon: "🍔",
-          items: [
-            { name: "Aloo Tikki Burger", type: "veg", price: 50 },
-            { name: "Veg. Burger", type: "veg", price: 60 },
-            { name: "Paneer Burger", type: "veg", price: 70 },
-            { name: "Cheese Paneer Burger", type: "veg", price: 80 }
-          ]
-        },
-        {
-          id: "momos",
-          name: "Momos",
-          type: "veg",
-          icon: "🥟",
-          priceHeaders: ["Steamed", "Fried", "Kurkure"],
-          items: [
-            { name: "Veg. Momos", type: "veg", prices: { "Steamed": 90, "Fried": 100, "Kurkure": 120 } },
-            { name: "Paneer Momos", type: "veg", prices: { "Steamed": 100, "Fried": 120, "Kurkure": 140 } }
-          ]
-        },
-        {
-          id: "egg-veg-rolls",
-          name: "Egg - Veg. Roll",
-          type: "egg",
-          icon: "🍳",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Egg Mix Veg. Roll", type: "egg", single: 80, double: 120 },
-            { name: "Egg Masala Aloo", type: "egg", single: 70, double: 100 },
-            { name: "Egg Aloo Tikki", type: "egg", single: 80, double: 110 },
-            { name: "Egg Cheese Sweet Corn", type: "egg", single: 120, double: 170 }
-          ]
-        },
-        {
-          id: "egg-non-veg-rolls",
-          name: "Egg Non Veg. Roll",
-          type: "non-veg",
-          icon: "🥚🍗",
-          priceHeaders: ["Single", "Double"],
-          items: [
-            { name: "Egg Chicken Roll", type: "non-veg", single: 110, double: 160 },
-            { name: "Egg Malai Chicken", type: "non-veg", single: 130, double: 180 },
-            { name: "Egg Haryali Chicken", type: "non-veg", single: 140, double: 190 }
-          ]
-        },
-        {
-          id: "fries",
-          name: "Fries",
-          subtitle: "Fries Before Guys",
-          type: "veg",
-          icon: "🍟",
-          items: [
-            { name: "Classic Fries", type: "veg", price: 70 },
-            { name: "Masala Fries", type: "veg", price: 80 },
-            { name: "Peri Peri Fries", type: "veg", price: 90 },
-            { name: "Cheese Fries", type: "veg", price: 100 },
-            { name: "Tandoori Fries", type: "veg", price: 100 }
-          ]
-        },
-        {
-          id: "beverages",
-          name: "Beverages",
-          subtitle: "Sip Chill Repeat",
-          type: "veg",
-          icon: "🥤",
-          items: [
-            { name: "Cold Coffee", type: "veg", price: 80 },
-            { name: "Vanilla Shake", type: "veg", price: 80 },
-            { name: "Strawberry Shake", type: "veg", price: 80 },
-            { name: "Butterscotch Shake", type: "veg", price: 80 },
-            { name: "Oreo Shake", type: "veg", price: 90 }
-          ]
-        },
-        {
-          id: "mojitos",
-          name: "Mojito",
-          subtitle: "Fresh Sips Better Days",
-          type: "veg",
-          icon: "🍹",
-          items: [
-            { name: "Mint Mojito", type: "veg", price: 70 },
-            { name: "Green Apple Mojito", type: "veg", price: 70 },
-            { name: "Ice Blue Mojito", type: "veg", price: 70 },
-            { name: "Orange Mojito", type: "veg", price: 70 },
-            { name: "Water Melon Mojito", type: "veg", price: 70 },
-            { name: "Masala Lemonade", type: "veg", price: 80 }
-          ]
-        }
-      ]
-    };
-
-    let activeDiet = 'all';
-    let searchQuery = '';
-
-    const navContainer = document.getElementById('categoryNav');
-    const menuContainer = document.getElementById('menuContainer');
-    const searchInput = document.getElementById('searchInput');
-
-    // Build Category Nav Pills
-    function renderNav() {
-      navContainer.innerHTML = '';
-      menuData.categories.forEach((cat, index) => {
-        const btn = document.createElement('button');
-        btn.className = `cat-btn ${index === 0 ? 'active' : ''}`;
-        btn.textContent = `${cat.icon || '🍽️'} ${cat.name}`;
-        btn.onclick = () => {
-          document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const target = document.getElementById(cat.id);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          }
-        };
-        navContainer.appendChild(btn);
-      });
-    }
-
-    // Render Menu Items
-    function renderMenu() {
-      menuContainer.innerHTML = '';
-      let totalVisible = 0;
-
-      menuData.categories.forEach(cat => {
-        // Filter items
-        const matchingItems = cat.items.filter(item => {
-          // Diet filter
-          if (activeDiet === 'veg' && item.type !== 'veg') return false;
-          if (activeDiet === 'non-veg' && item.type !== 'non-veg') return false;
-          if (activeDiet === 'egg' && item.type !== 'egg') return false;
-
-          // Search filter
-          if (searchQuery) {
-            return item.name.toLowerCase().includes(searchQuery) ||
-                   cat.name.toLowerCase().includes(searchQuery);
-          }
-          return true;
-        });
-
-        if (matchingItems.length === 0) return;
-        totalVisible += matchingItems.length;
-
-        const section = document.createElement('div');
-        section.className = 'category-group';
-        section.id = cat.id;
-
-        let subtitleHtml = cat.subtitle ? `<span class="cat-subtitle">${cat.subtitle}</span>` : '';
-
-        let itemsHtml = matchingItems.map(item => {
-          let markClass = item.type === 'veg' ? 'mark-veg' : (item.type === 'egg' ? 'mark-egg' : 'mark-nonveg');
-          
-          let pricesHtml = '';
-          if (item.single !== undefined && item.double !== undefined) {
-            pricesHtml = `
-              <div class="prices-container">
-                <div class="price-box">
-                  <div class="price-label">Single</div>
-                  <div class="price-value">₹${item.single}</div>
-                </div>
-                <div class="price-box">
-                  <div class="price-label">Double</div>
-                  <div class="price-value">₹${item.double}</div>
-                </div>
-              </div>
-            `;
-          } else if (item.prices) {
-            pricesHtml = `
-              <div class="prices-container">
-                ${Object.entries(item.prices).map(([opt, pr]) => `
-                  <div class="price-box">
-                    <div class="price-label">${opt}</div>
-                    <div class="price-value">₹${pr}</div>
-                  </div>
-                `).join('')}
-              </div>
-            `;
-          } else {
-            pricesHtml = `
-              <div class="single-price">
-                <div class="price-value">₹${item.price}</div>
-              </div>
-            `;
-          }
-
-          return `
-            <div class="item-card">
-              <div class="item-info">
-                <div class="food-mark ${markClass}"></div>
-                <div class="item-name">${item.name}</div>
-              </div>
-              ${pricesHtml}
-            </div>
-          `;
-        }).join('');
-
-        section.innerHTML = `
-          <div class="category-header">
-            <h2 class="cat-title">${cat.icon || ''} ${cat.name}</h2>
-            ${subtitleHtml}
-          </div>
-          ${itemsHtml}
-        `;
-        menuContainer.appendChild(section);
-      });
-
-      if (totalVisible === 0) {
-        menuContainer.innerHTML = `
-          <div class="no-results">
-            <p style="font-size: 32px; margin-bottom: 8px;">🔍</p>
-            <p style="font-size: 16px; font-weight: 600; color: #fff;">No items found</p>
-            <p style="font-size: 13px; margin-top: 4px;">Try searching for something else or change filters.</p>
-          </div>
-        `;
-      }
-    }
-
-    // Search event
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.toLowerCase().trim();
-      renderMenu();
-    });
-
-    // Diet buttons event
-    document.querySelectorAll('.diet-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.diet-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeDiet = btn.dataset.diet;
-        renderMenu();
-      });
-    });
-
-    function shareMenu() {
-      if (navigator.share) {
-        navigator.share({
-          title: 'Rolls Mafia - Digital Menu',
-          text: 'Check out the delicious menu of Rolls Mafia!',
-          url: window.location.href
-        }).catch(() => {});
-      } else {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-          alert('Menu link copied to clipboard!');
-        });
-      }
-    }
-
-    renderNav();
-    renderMenu();
-  </script>
 </body>
 </html>
